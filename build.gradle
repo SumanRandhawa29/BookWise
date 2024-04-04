@@ -1,0 +1,42 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.4'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.bookwise'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// spring boot web application
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// Spring is able to connect with database based on the JDBC API or JDBC URL we provide in spring.datasource.url
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+
+	// from these dependencies, spring boot will automatically configure the datasource and JdbcTemplate based on the JDBC URL we provide in spring.datasource.url
+	runtimeOnly 'org.hsqldb:hsqldb' // if datasource.url is jdbc:hsqldb:mem:test_db
+	runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc' // if datasource.url is jdbc:sqlserver://localhost:1433;databaseName=test_db
+
+	// flyway is a database migration tool that helps us to manage and version our database schema
+	// flyway-core is the core library of flyway that we need to include in our project
+	// for hsql database, we need to include flyway-core library only
+	implementation 'org.flywaydb:flyway-core'
+
+	// flyway-sqlserver is the library that we need to include in our project if we are using SQL Server as our database
+	implementation 'org.flywaydb:flyway-sqlserver'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
