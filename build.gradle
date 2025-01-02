@@ -34,7 +34,19 @@ dependencies {
 	// flyway-sqlserver is the library that we need to include in our project if we are using SQL Server as our database
 	implementation 'org.flywaydb:flyway-sqlserver'
 
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0'
+	implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.14'
+
+
+
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.assertj:assertj-core:3.27.0'
+	testImplementation("io.rest-assured:rest-assured")
 }
 
 tasks.named('test') {

@@ -1,4 +1,4 @@
-package com.bookwise.bookLibrary;
+package com.bookwise.booklibrary;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
